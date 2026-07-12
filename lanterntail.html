@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LanternTail Companion — ZeroReign Studios</title>
 <meta name="description" content="LanternTail Companion: a stylized, fully rigged and animated fennec companion with a real glowing crystal-tail lantern. For Unity 6 and Unreal Engine 5.7.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <style>
   :root {
     --bg: #0a0d18;
@@ -35,15 +36,14 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(95, 230, 255, 0.08);
   }
-  .brand { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); }
-  .brand span { color: var(--glow); }
+  .brand img { height: 44px; display: block; }
   nav .links a { color: var(--ink-dim); margin-left: 26px; font-size: 0.92rem; letter-spacing: 0.04em; }
   nav .links a:hover { color: var(--glow); }
 
   .page-hero {
     background:
-      radial-gradient(800px 420px at 80% 20%, rgba(95, 230, 255, 0.10), transparent 60%),
-      linear-gradient(180deg, #0c1020 0%, var(--bg) 100%);
+      linear-gradient(180deg, rgba(10,13,24,0.88) 0%, rgba(10,13,24,0.93) 70%, var(--bg) 100%),
+      url("assets/bg_world.jpg") center 20% / cover no-repeat;
     padding: 64px 6vw 20px;
   }
   .page-hero .inner { max-width: 1240px; margin: 0 auto; }
@@ -142,7 +142,7 @@
 <body>
 
 <nav>
-  <div class="brand">Zero<span>Reign</span> Studios</div>
+  <div class="brand"><a href="index.html"><img src="assets/logo_horizontal.png" alt="ZeroReign Studios"></a></div>
   <div class="links">
     <a href="index.html">← Studio Home</a>
     <a href="#gallery">Gallery</a>

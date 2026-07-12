@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZeroReign Studios — Handcrafted Game-Ready Characters</title>
 <meta name="description" content="ZeroReign Studios crafts stylized, fully animated, game-ready characters for Unity and Unreal Engine. Home of the LanternTail Companion.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <style>
   :root {
     --bg: #0a0d18;
@@ -35,8 +36,7 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(95, 230, 255, 0.08);
   }
-  .brand { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); }
-  .brand span { color: var(--glow); }
+  .brand img { height: 44px; display: block; }
   nav .links a { color: var(--ink-dim); margin-left: 26px; font-size: 0.92rem; letter-spacing: 0.04em; }
   nav .links a:hover { color: var(--glow); }
 
@@ -45,9 +45,8 @@
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(900px 500px at 78% 30%, rgba(95, 230, 255, 0.10), transparent 60%),
-      radial-gradient(700px 480px at 15% 85%, rgba(185, 165, 240, 0.12), transparent 65%),
-      linear-gradient(180deg, #0c1020 0%, var(--bg) 100%);
+      linear-gradient(180deg, rgba(10,13,24,0.80) 0%, rgba(10,13,24,0.68) 50%, var(--bg) 100%),
+      url("assets/bg_world.jpg") center 24% / cover no-repeat;
   }
   .hero-wrap {
     max-width: 1240px; margin: 0 auto;
@@ -151,7 +150,7 @@
 <body>
 
 <nav>
-  <div class="brand">Zero<span>Reign</span> Studios</div>
+  <div class="brand"><img src="assets/logo_horizontal.png" alt="ZeroReign Studios"></div>
   <div class="links">
     <a href="#featured">Featured</a>
     <a href="lanterntail.html">LanternTail</a>
