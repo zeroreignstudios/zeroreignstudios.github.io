@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZeroReign Studios — Handcrafted Game-Ready Characters</title>
+<meta name="description" content="ZeroReign Studios crafts stylized, fully animated, game-ready characters for Unity and Unreal Engine. Home of the LanternTail Companion.">
+<style>
+  :root {
+    --bg: #0a0d18;
+    --bg-soft: #10142a;
+    --panel: #151b36;
+    --ink: #e9ecf8;
+    --ink-dim: #a8b0cf;
+    --glow: #5fe6ff;
+    --glow-soft: rgba(95, 230, 255, 0.14);
+    --lavender: #b9a5f0;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  a { color: var(--glow); text-decoration: none; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 6vw;
+    background: rgba(10, 13, 24, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(95, 230, 255, 0.08);
+  }
+  .brand { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); }
+  .brand span { color: var(--glow); }
+  nav .links a { color: var(--ink-dim); margin-left: 26px; font-size: 0.92rem; letter-spacing: 0.04em; }
+  nav .links a:hover { color: var(--glow); }
+
+  /* ---- split hero ---- */
+  header {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(900px 500px at 78% 30%, rgba(95, 230, 255, 0.10), transparent 60%),
+      radial-gradient(700px 480px at 15% 85%, rgba(185, 165, 240, 0.12), transparent 65%),
+      linear-gradient(180deg, #0c1020 0%, var(--bg) 100%);
+  }
+  .hero-wrap {
+    max-width: 1240px; margin: 0 auto;
+    display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 40px;
+    align-items: center;
+    padding: 72px 6vw 84px;
+  }
+  .kicker {
+    display: inline-block;
+    font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--glow);
+    background: var(--glow-soft);
+    border: 1px solid rgba(95, 230, 255, 0.35);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+  }
+  h1 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.01em; }
+  h1 em { font-style: normal; color: var(--glow); text-shadow: 0 0 34px rgba(95, 230, 255, 0.45); }
+  .hero-copy p.sub { margin-top: 16px; max-width: 32rem; color: var(--ink-dim); font-size: 1.06rem; }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 13px 26px; border-radius: 10px;
+    font-weight: 600; font-size: 0.95rem; letter-spacing: 0.03em;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary { background: var(--glow); color: #06121a; box-shadow: 0 0 28px rgba(95, 230, 255, 0.35); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(95, 230, 255, 0.55); }
+  .btn-ghost { border: 1px solid rgba(185, 165, 240, 0.5); color: var(--lavender); }
+  .btn-ghost:hover { background: rgba(185, 165, 240, 0.1); transform: translateY(-2px); }
+  .hero-art { position: relative; }
+  .hero-art img {
+    width: 100%; display: block;
+    border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), 0 0 60px rgba(95, 230, 255, 0.12);
+    border: 1px solid rgba(95, 230, 255, 0.15);
+  }
+  .hero-art .caption {
+    position: absolute; bottom: 14px; right: 16px;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(233, 236, 248, 0.75);
+    background: rgba(10, 13, 24, 0.6); padding: 4px 10px; border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+
+  section { padding: 76px 6vw; max-width: 1240px; margin: 0 auto; }
+  .section-kicker { font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--glow); margin-bottom: 10px; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 750; margin-bottom: 14px; }
+  .lede { color: var(--ink-dim); max-width: 46rem; font-size: 1.04rem; }
+
+  /* featured asset cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 36px; }
+  .asset-card {
+    display: block; color: var(--ink);
+    background: var(--panel);
+    border: 1px solid rgba(95, 230, 255, 0.12);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .asset-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(95, 230, 255, 0.45);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(95, 230, 255, 0.12);
+  }
+  .asset-card img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+  .asset-card .body { padding: 20px 22px 24px; }
+  .asset-card h3 { font-size: 1.25rem; margin-bottom: 6px; }
+  .asset-card p { color: var(--ink-dim); font-size: 0.93rem; }
+  .asset-card .view {
+    display: inline-block; margin-top: 14px; font-weight: 600; font-size: 0.92rem; color: var(--glow);
+  }
+  .asset-card.soon {
+    border-style: dashed; border-color: rgba(185, 165, 240, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 280px; text-align: center;
+  }
+  .asset-card.soon:hover { transform: none; box-shadow: none; border-color: rgba(185, 165, 240, 0.5); }
+  .asset-card.soon .inner { padding: 30px; }
+  .asset-card.soon .spark { font-size: 2rem; }
+  .asset-card.soon b { display: block; margin-top: 10px; font-size: 1.05rem; color: var(--lavender); }
+  .asset-card.soon span { color: var(--ink-dim); font-size: 0.9rem; }
+
+  .contact-card {
+    background: linear-gradient(135deg, var(--panel), #1a1440);
+    border: 1px solid rgba(185, 165, 240, 0.25);
+    border-radius: var(--radius);
+    padding: 44px; text-align: center;
+  }
+  .contact-card a.mail { display: inline-block; margin-top: 14px; font-size: 1.15rem; font-weight: 600; }
+  footer {
+    padding: 34px 6vw; text-align: center;
+    color: var(--ink-dim); font-size: 0.82rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  @media (max-width: 880px) {
+    .hero-wrap { grid-template-columns: 1fr; padding-top: 48px; }
+    .hero-art { order: -1; }
+    nav .links a { margin-left: 16px; font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Zero<span>Reign</span> Studios</div>
+  <div class="links">
+    <a href="#featured">Featured</a>
+    <a href="lanterntail.html">LanternTail</a>
+    <a href="#contact">Support</a>
+  </div>
+</nav>
+
+<header>
+  <div class="hero-wrap">
+    <div class="hero-copy">
+      <span class="kicker">Stylized · Rigged · Game-Ready</span>
+      <h1>Characters with a <em>spark of life</em>, ready for your world.</h1>
+      <p class="sub">ZeroReign Studios crafts fully animated, production-ready creatures and companions
+      for Unity and Unreal Engine — hand-tuned animation, playable demos included, zero setup.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="lanterntail.html">Meet the LanternTail Companion →</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="assets/characters_night.jpg" alt="LanternTail Companions — Girl and Boy variants with glowing crystal tails">
+      <span class="caption">Real lights. Real animation. Ready to play.</span>
+    </div>
+  </div>
+</header>
+
+<section id="featured">
+  <div class="section-kicker">Featured Asset</div>
+  <h2>Now in the workshop window</h2>
+  <p class="lede">Every ZeroReign asset ships complete — rigged, animated, documented, and playable
+  the moment you import it. Click an asset to see everything inside.</p>
+
+  <div class="cards">
+    <a class="asset-card" href="lanterntail.html">
+      <img src="assets/characters_day.jpg" alt="LanternTail Companion — Girl and Boy color variants">
+      <div class="body">
+        <h3>LanternTail Companion</h3>
+        <p>A chibi fennec companion whose crystal tail is a real, controllable lantern.
+        Two color variants, 16 animations, playable demos for Unity 6 &amp; Unreal Engine 5.7.</p>
+        <span class="view">View the asset →</span>
+      </div>
+    </a>
+
+    <div class="asset-card soon">
+      <div class="inner">
+        <div class="spark">✦</div>
+        <b>More to come</b>
+        <span>New companions and creatures are already in the workshop. Check back soon.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top: 10px;">
+  <div class="contact-card">
+    <div class="section-kicker">Support</div>
+    <h2>Questions? We answer.</h2>
+    <p class="lede" style="margin: 0 auto;">Setup help, feature requests, or anything about our assets —
+    reach out and we'll get back to you.</p>
+    <a class="mail" href="mailto:marcel.gilbert.dev@gmail.com">marcel.gilbert.dev@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 ZeroReign Studios. All rights reserved. · LanternTail Companion™
+</footer>
+
+</body>
+</html>

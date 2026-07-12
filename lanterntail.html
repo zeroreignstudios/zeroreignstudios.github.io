@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LanternTail Companion — ZeroReign Studios</title>
+<meta name="description" content="LanternTail Companion: a stylized, fully rigged and animated fennec companion with a real glowing crystal-tail lantern. For Unity 6 and Unreal Engine 5.7.">
+<style>
+  :root {
+    --bg: #0a0d18;
+    --bg-soft: #10142a;
+    --panel: #151b36;
+    --ink: #e9ecf8;
+    --ink-dim: #a8b0cf;
+    --glow: #5fe6ff;
+    --glow-soft: rgba(95, 230, 255, 0.14);
+    --lavender: #b9a5f0;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  a { color: var(--glow); text-decoration: none; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 6vw;
+    background: rgba(10, 13, 24, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(95, 230, 255, 0.08);
+  }
+  .brand { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); }
+  .brand span { color: var(--glow); }
+  nav .links a { color: var(--ink-dim); margin-left: 26px; font-size: 0.92rem; letter-spacing: 0.04em; }
+  nav .links a:hover { color: var(--glow); }
+
+  .page-hero {
+    background:
+      radial-gradient(800px 420px at 80% 20%, rgba(95, 230, 255, 0.10), transparent 60%),
+      linear-gradient(180deg, #0c1020 0%, var(--bg) 100%);
+    padding: 64px 6vw 20px;
+  }
+  .page-hero .inner { max-width: 1240px; margin: 0 auto; }
+  .crumb { font-size: 0.85rem; color: var(--ink-dim); }
+  .crumb a { color: var(--ink-dim); }
+  .crumb a:hover { color: var(--glow); }
+  .kicker {
+    display: inline-block;
+    font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--glow);
+    background: var(--glow-soft);
+    border: 1px solid rgba(95, 230, 255, 0.35);
+    padding: 6px 14px; border-radius: 999px; margin: 22px 0 16px;
+  }
+  h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.1; font-weight: 800; }
+  h1 em { font-style: normal; color: var(--glow); text-shadow: 0 0 34px rgba(95, 230, 255, 0.45); }
+  .lede { color: var(--ink-dim); max-width: 46rem; font-size: 1.06rem; margin-top: 14px; }
+  .cta-row { margin: 28px 0 8px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 13px 26px; border-radius: 10px;
+    font-weight: 600; font-size: 0.95rem; letter-spacing: 0.03em;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary { background: var(--glow); color: #06121a; box-shadow: 0 0 28px rgba(95, 230, 255, 0.35); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(95, 230, 255, 0.55); }
+  .btn-ghost { border: 1px solid rgba(185, 165, 240, 0.5); color: var(--lavender); }
+  .btn-ghost:hover { background: rgba(185, 165, 240, 0.1); transform: translateY(-2px); }
+  .btn.soon { position: relative; opacity: 0.85; cursor: default; }
+  .btn.soon::after {
+    content: "coming soon";
+    position: absolute; top: -10px; right: -12px;
+    font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--lavender); color: #14102a;
+    padding: 2px 8px; border-radius: 999px; font-weight: 700;
+  }
+
+  section { padding: 64px 6vw; max-width: 1240px; margin: 0 auto; }
+  .section-kicker { font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--glow); margin-bottom: 10px; }
+  h2 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 750; margin-bottom: 14px; }
+
+  .product { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  .product img { width: 100%; border-radius: var(--radius); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+  .feature-list { display: grid; gap: 14px; }
+  .feature {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--panel); border: 1px solid rgba(95,230,255,0.07);
+    padding: 14px 18px; border-radius: 12px;
+  }
+  .feature .dot {
+    flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: 50%;
+    background: var(--glow); box-shadow: 0 0 12px rgba(95,230,255,0.8);
+  }
+  .feature b { display: block; font-size: 0.98rem; }
+  .feature span { color: var(--ink-dim); font-size: 0.9rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 34px; }
+  figure {
+    background: var(--panel); border-radius: var(--radius); overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.18s ease;
+  }
+  figure:hover { transform: translateY(-4px); }
+  figure a { display: block; }
+  figure img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; }
+  figcaption { padding: 12px 16px; font-size: 0.86rem; color: var(--ink-dim); }
+
+  .engines {
+    margin-top: 54px; padding: 30px;
+    display: flex; justify-content: center; gap: 8vw; flex-wrap: wrap;
+    background: var(--bg-soft); border-radius: var(--radius);
+    border: 1px solid rgba(95,230,255,0.08);
+    text-align: center;
+  }
+  .engines div b { display: block; font-size: 1.25rem; }
+  .engines div span { color: var(--ink-dim); font-size: 0.85rem; }
+
+  .contact-card {
+    background: linear-gradient(135deg, var(--panel), #1a1440);
+    border: 1px solid rgba(185,165,240,0.25);
+    border-radius: var(--radius);
+    padding: 40px; text-align: center;
+  }
+  .contact-card a.mail { display: inline-block; margin-top: 12px; font-size: 1.1rem; font-weight: 600; }
+  footer {
+    padding: 34px 6vw; text-align: center;
+    color: var(--ink-dim); font-size: 0.82rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  @media (max-width: 820px) {
+    .product { grid-template-columns: 1fr; }
+    nav .links a { margin-left: 16px; font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Zero<span>Reign</span> Studios</div>
+  <div class="links">
+    <a href="index.html">← Studio Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Support</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="inner">
+    <div class="crumb"><a href="index.html">ZeroReign Studios</a> / Featured Asset</div>
+    <div class="kicker">Unity 6 · Unreal Engine 5.7</div>
+    <h1>LanternTail Companion</h1>
+    <p class="lede">A chibi fennec companion with a crystal tail that really <em>lights the way</em>.
+    Two color variants — the purple Girl and orange Boy — share one optimized rig, sixteen hand-tuned
+    animations, and playable demo scenes in both engines. Drop her in, press play, and she walks, hops,
+    jumps, sits, and celebrates — with her lantern glowing neon or warm.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary soon" href="#gallery">Unity Asset Store</a>
+      <a class="btn btn-ghost soon" href="#gallery">Fab · Unreal Engine</a>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="product">
+    <img src="assets/characters_day.jpg" alt="LanternTail Companion — Girl and Boy variants side by side">
+    <div class="feature-list">
+      <div class="feature"><div class="dot"></div><div><b>16 animation clips</b><span>Idles, walks, hops, jump, sit, turns, and a Happy spin — plus in-place variants for code-driven controllers. Loop-perfect locomotion.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>Tail lantern with a real light</b><span>Neon and warm lantern modes drive both the crystal's glow and an actual point light that follows her tail.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>Two looks, one click</b><span>Swap Girl ↔ Boy live in the demo — body, tail crystal, and backpack together. Accessories toggle on and off.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>Playable demos in both engines</b><span>Full third-person controller — keyboard and gamepad — with follow camera, in a handcrafted grove with day and night scenes.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>Production-ready</b><span>3 LOD levels, 4K PBR textures, facial blend shapes, clean 83-bone skeleton. No third-party dependencies.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" style="padding-top: 8px;">
+  <div class="section-kicker">Gallery</div>
+  <h2>From daylight groves to lantern-lit nights</h2>
+  <div class="grid">
+    <figure><a href="assets/characters_night.jpg" target="_blank"><img src="assets/characters_night.jpg" alt="Girl and Boy variants at night with tail lanterns glowing"></a><figcaption>Girl &amp; Boy variants — tail lanterns in neon</figcaption></figure>
+    <figure><a href="assets/hero_night_lantern.jpg" target="_blank"><img src="assets/hero_night_lantern.jpg" alt="Night scene with the tail lantern lighting the path"></a><figcaption>The lantern really lights the night</figcaption></figure>
+    <figure><a href="assets/day_grove.jpg" target="_blank"><img src="assets/day_grove.jpg" alt="The daytime grove demo scene in Unreal Engine"></a><figcaption>Playable grove demo — Unreal Engine 5.7</figcaption></figure>
+    <figure><a href="assets/contents_trees.jpg" target="_blank"><img src="assets/contents_trees.jpg" alt="Stylized tree set included with the package"></a><figcaption>Included environment set — stylized trees &amp; torii</figcaption></figure>
+    <figure><a href="assets/contents_props.jpg" target="_blank"><img src="assets/contents_props.jpg" alt="Crystal props and grove pieces included with the package"></a><figcaption>Grove props — crystals, stump, island pieces</figcaption></figure>
+  </div>
+  <p style="margin-top:14px; color:var(--ink-dim); font-size:0.85rem;">Click any image to view it full size.</p>
+
+  <div class="engines">
+    <div><b>Unity 6</b><span>Built-in RP · URP notes included</span></div>
+    <div><b>Unreal Engine 5.7</b><span>Blueprint-only · no plugins</span></div>
+    <div><b>One purchase, both engines</b><span>Complete projects, ready to play</span></div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top: 10px;">
+  <div class="contact-card">
+    <div class="section-kicker">Support</div>
+    <h2>Questions about LanternTail?</h2>
+    <a class="mail" href="mailto:marcel.gilbert.dev@gmail.com">marcel.gilbert.dev@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 ZeroReign Studios. All rights reserved. · LanternTail Companion™ · <a href="index.html">Studio Home</a>
+</footer>
+
+</body>
+</html>
