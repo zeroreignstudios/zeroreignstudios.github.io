@@ -45,7 +45,7 @@
     position: relative;
     overflow: hidden;
     background:
-      linear-gradient(180deg, rgba(10,13,24,0.80) 0%, rgba(10,13,24,0.68) 50%, var(--bg) 100%),
+      linear-gradient(180deg, rgba(10,13,24,0.55) 0%, rgba(10,13,24,0.42) 55%, var(--bg) 100%),
       url("assets/bg_world.jpg") center 24% / cover no-repeat;
   }
   .hero-wrap {
@@ -127,11 +127,17 @@
   .asset-card.soon b { display: block; margin-top: 10px; font-size: 1.05rem; color: var(--lavender); }
   .asset-card.soon span { color: var(--ink-dim); font-size: 0.9rem; }
 
+  .lower {
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(10,13,24,0.72) 14%, rgba(10,13,24,0.78) 82%, rgba(10,13,24,0.94) 100%),
+      url("assets/bg_world2.jpg") center top / cover no-repeat;
+  }
   .contact-card {
-    background: linear-gradient(135deg, var(--panel), #1a1440);
+    background: linear-gradient(135deg, rgba(21,27,54,0.92), rgba(26,20,64,0.92));
     border: 1px solid rgba(185, 165, 240, 0.25);
     border-radius: var(--radius);
     padding: 44px; text-align: center;
+    backdrop-filter: blur(4px);
   }
   .contact-card a.mail { display: inline-block; margin-top: 14px; font-size: 1.15rem; font-weight: 600; }
   footer {
@@ -176,6 +182,7 @@
   </div>
 </header>
 
+<div class="lower">
 <section id="featured">
   <div class="section-kicker">Featured Asset</div>
   <h2>Now in the workshop window</h2>
@@ -212,6 +219,7 @@
     <a class="mail" href="mailto:marcel.gilbert.dev@gmail.com">marcel.gilbert.dev@gmail.com</a>
   </div>
 </section>
+</div>
 
 <footer>
   © 2026 ZeroReign Studios. All rights reserved. · LanternTail Companion™
