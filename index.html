@@ -51,7 +51,7 @@
     position: relative;
     overflow: hidden;
     background:
-      linear-gradient(180deg, rgba(10,13,24,0.55) 0%, rgba(10,13,24,0.42) 55%, var(--bg) 100%),
+      linear-gradient(180deg, rgba(10,13,24,0.80) 0%, rgba(10,13,24,0.68) 55%, var(--bg) 100%),
       url("assets/bg_world.jpg") center 24% / cover no-repeat;
   }
   .hero-wrap {
@@ -84,47 +84,61 @@
     width: 100%; height: 235px; object-fit: cover; display: block;
     border-top: 1px solid rgba(95, 230, 255, 0.12);
     aspect-ratio: auto;
-    opacity: 0.72; transition: opacity 0.18s ease;
+    opacity: 0.92; transition: opacity 0.18s ease;
   }
   .asset-card:hover .night-strip { opacity: 1; }
 
-  section { padding: 76px 6vw; max-width: 1240px; margin: 0 auto; }
+  section { scroll-margin-top: 88px; padding: 76px 6vw; max-width: 1240px; margin: 0 auto; }
   .section-kicker { font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--glow); margin-bottom: 10px; }
   h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 750; margin-bottom: 14px; }
   .lede { color: var(--ink-dim); max-width: 46rem; font-size: 1.04rem; }
 
   /* featured asset cards */
-  .cards { display: grid; grid-template-columns: minmax(300px, 540px); gap: 24px; margin-top: 36px; }
+  .cards { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; max-width: 1040px; }
+  /* Wide layout: the shots carry the left, the copy the right. With the wallpaper gone
+     a 540px card left half the row empty, which read as an unfinished page. */
+  .asset-card { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: auto auto; }
+  .asset-card > img:not(.night-strip) { grid-column: 1; grid-row: 1; }
+  .asset-card .body { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .asset-card .night-strip { grid-column: 1; grid-row: 2; }
   .asset-card {
-    display: block; color: var(--ink);
-    background: rgba(21, 27, 54, 0.42);
+    color: var(--ink);
+    background: rgba(16, 21, 44, 0.94);
+    backdrop-filter: blur(6px);
     border: 1px solid rgba(95, 230, 255, 0.16);
     border-radius: var(--radius); overflow: hidden;
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
   }
   .asset-card:hover {
     transform: translateY(-6px);
-    background: rgba(21, 27, 54, 0.9);
+    background: rgba(19, 25, 52, 0.98);
     border-color: rgba(95, 230, 255, 0.45);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(95, 230, 255, 0.12);
   }
-  /* images sit semi-transparent at rest so the workshop art shows through,
-     then snap to full clarity on hover */
-  .asset-card img { width: 100%; display: block; aspect-ratio: 16/7; object-fit: cover;
-    opacity: 0.72; transition: opacity 0.18s ease; }
-  .asset-card:hover img { opacity: 1; }
+  /* Product shots always render at full clarity. The buyer is evaluating THIS asset;
+     fading it so unrelated art shows through costs a sale to win a flourish. */
+  .asset-card img { width: 100%; display: block; aspect-ratio: 16/7; object-fit: cover; }
   .asset-card .body { padding: 20px 22px 24px; }
   .asset-card h3 { font-size: 1.25rem; margin-bottom: 6px; }
   .asset-card p { color: var(--ink-dim); font-size: 0.93rem; }
   .asset-card .view {
     display: inline-block; margin-top: 14px; font-weight: 600; font-size: 0.92rem; color: var(--glow);
   }
-  .lower {
-    background:
-      linear-gradient(180deg, var(--bg) 0%, rgba(10,13,24,0.52) 12%, rgba(10,13,24,0.55) 78%, rgba(10,13,24,0.95) 100%),
-      url("assets/bg_world2.jpg") top center / 100% auto no-repeat,
-      var(--bg);
-  }
+  .lower { background: linear-gradient(180deg, var(--bg) 0%, #0c1020 40%, var(--bg) 100%); }
+  /* The concept board is a piece of art, so it gets shown as one: full width,
+     full opacity, uncropped, with nothing written across it. */
+  .poster { margin-top: 30px; border-radius: var(--radius); overflow: hidden;
+    border: 1px solid rgba(95,230,255,0.14); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+  .poster img { width: 100%; display: block; }
+
+  /* These claims used to exist only as pixels baked into the concept board:
+     unreadable on a phone, invisible to search and to screen readers. */
+  .standards { margin-top: 30px; display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .std { background: var(--panel); border: 1px solid rgba(95,230,255,0.08);
+    border-radius: 12px; padding: 18px 20px; }
+  .std b { display: block; font-size: 1rem; margin-bottom: 4px; }
+  .std span { color: var(--ink-dim); font-size: 0.9rem; }
   .contact-card {
     background: linear-gradient(135deg, rgba(21,27,54,0.92), rgba(26,20,64,0.92));
     border: 1px solid rgba(185, 165, 240, 0.25);
@@ -142,6 +156,10 @@
   }
 
   @media (max-width: 880px) {
+    .asset-card { grid-template-columns: 1fr; }
+    .asset-card > img:not(.night-strip) { grid-column: 1; grid-row: 1; }
+    .asset-card .body { grid-column: 1; grid-row: 2; }
+    .asset-card .night-strip { grid-column: 1; grid-row: 3; }
     .hero-wrap { grid-template-columns: 1fr; padding-top: 48px; }
     .hero-art { order: -1; }
     nav .links a { margin-left: 16px; font-size: 0.85rem; }
@@ -195,6 +213,29 @@
       <img class="night-strip" src="assets/og2_lineup_night.jpg" alt="The same eight colourways at night with their crystal tails glowing">
     </a>
   </div>
+</section>
+
+<section id="standards">
+  <div class="section-kicker">What every asset ships with</div>
+  <h2>The standard, not the exception</h2>
+  <div class="standards">
+    <div class="std"><b>Game ready</b><span>Optimised and production ready — LODs, sane triangle budgets, no cleanup homework.</span></div>
+    <div class="std"><b>Modular &amp; flexible</b><span>Swappable gear and colourways. Mix, match and rebuild without touching the mesh.</span></div>
+    <div class="std"><b>A style of its own</b><span>Hand-directed art with a consistent look across characters, gear and props.</span></div>
+    <div class="std"><b>Made for developers</b><span>Clean files, organised folders, documented. Drop it in and press play.</span></div>
+    <div class="std"><b>Engine optimised</b><span>Built and tested in Unity and Unreal, with per-platform texture handling for mobile.</span></div>
+    <div class="std"><b>Built with care</b><span>Every rig, clip and texture is checked by hand before it ships. For creators, by creators.</span></div>
+  </div>
+</section>
+
+<section id="ahead" style="padding-top: 10px;">
+  <div class="section-kicker">The road ahead</div>
+  <h2>Characters today. Whole worlds next.</h2>
+  <p class="lede">Environments, props, modular kits and materials are already on the bench — built to
+  the same standard and in the same art direction. This is the range we are working toward.</p>
+  <figure class="poster">
+    <img loading="lazy" src="assets/bg_world2.jpg" alt="Concept board showing the range ZeroReign Studios is building toward: props, fantasy environments, modular pieces, and materials and shaders">
+  </figure>
 </section>
 
 <section id="contact" style="padding-top: 10px;">
