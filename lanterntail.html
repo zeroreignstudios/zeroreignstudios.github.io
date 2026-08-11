@@ -3,8 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LanternTail Companion — ZeroReign Studios</title>
-<meta name="description" content="LanternTail Companion: a stylized, fully rigged and animated fennec companion with a real glowing crystal-tail lantern. For Unity 6 and Unreal Engine 5.7.">
+<title>LanternTail — Stylized Creature Character Pack | ZeroReign Studios</title>
+<meta name="description" content="A stylized creature character pack with 31 animations, 16 colourways including a zombie variant, swappable gear, 18 matching props and three playable demo scenes. For Unity 6 and Unreal Engine 5.7.">
+
+<meta property="og:type" content="product">
+<meta property="og:title" content="LanternTail — Stylized Creature Character Pack">
+<meta property="og:description" content="31 animations. 16 colourways. A zombie variant on the same rig. Swappable gear, 18 props and three playable demo scenes.">
+<meta property="og:image" content="https://zeroreignstudios.github.io/assets/social.jpg">
+<meta property="og:url" content="https://zeroreignstudios.github.io/lanterntail.html">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <style>
   :root {
@@ -110,6 +118,18 @@
   figure img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; }
   figcaption { padding: 12px 16px; font-size: 0.86rem; color: var(--ink-dim); }
 
+  .specs {
+    margin-top: 30px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;
+  }
+  .spec {
+    background: var(--bg-soft); border: 1px solid rgba(95,230,255,0.08);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .spec dt { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--glow); }
+  .spec dd { margin-top: 6px; font-size: 0.92rem; color: var(--ink); }
+  .spec dd small { display: block; color: var(--ink-dim); font-size: 0.82rem; margin-top: 3px; }
+
   .engines {
     margin-top: 54px; padding: 30px;
     display: flex; justify-content: center; gap: 8vw; flex-wrap: wrap;
@@ -119,6 +139,17 @@
   }
   .engines div b { display: block; font-size: 1.25rem; }
   .engines div span { color: var(--ink-dim); font-size: 0.85rem; }
+
+  .note {
+    margin-top: 22px; padding: 18px 22px;
+    background: var(--panel); border-left: 3px solid var(--lavender);
+    border-radius: 0 12px 12px 0; color: var(--ink-dim); font-size: 0.9rem;
+  }
+  .note b { color: var(--ink); }
+  .note code {
+    background: rgba(95,230,255,0.09); color: var(--glow);
+    padding: 1px 6px; border-radius: 5px; font-size: 0.86em;
+  }
 
   .contact-card {
     background: linear-gradient(135deg, var(--panel), #1a1440);
@@ -147,19 +178,20 @@
     <a href="index.html">Studio Home</a>
     <a href="workshop.html">Workshop</a>
     <a href="#gallery">Gallery</a>
+    <a href="#specs">Specs</a>
     <a href="#contact">Support</a>
   </div>
 </nav>
 
 <div class="page-hero">
   <div class="inner">
-    <div class="crumb"><a href="index.html">ZeroReign Studios</a> / <a href="workshop.html">Workshop</a> / LanternTail Companion</div>
+    <div class="crumb"><a href="index.html">ZeroReign Studios</a> / <a href="workshop.html">Workshop</a> / LanternTail</div>
     <div class="kicker">Unity 6 · Unreal Engine 5.7</div>
-    <h1>LanternTail Companion</h1>
-    <p class="lede">A chibi fennec companion with a crystal tail that really <em>lights the way</em>.
-    Two color variants — the purple Girl and orange Boy — share one optimized rig, sixteen hand-tuned
-    animations, and playable demo scenes in both engines. Drop her in, press play, and she walks, hops,
-    jumps, sits, and celebrates — with her lantern glowing neon or warm.</p>
+    <h1>LanternTail — Stylized <em>Creature Pack</em></h1>
+    <p class="lede">A stylized creature character built for adventure, platformer and cozy exploration
+    games. Her crystal tail glows — an emissive beacon you can recolour, pulse or switch off from a
+    single script — and a rotted zombie variant shares the same skeleton, so one rig covers both a
+    companion and an enemy.</p>
     <div class="cta-row">
       <a class="btn btn-primary soon" href="#gallery">Unity Asset Store</a>
       <a class="btn btn-ghost soon" href="#gallery">Fab · Unreal Engine</a>
@@ -169,13 +201,14 @@
 
 <section>
   <div class="product">
-    <img src="assets/characters_day.jpg" alt="LanternTail Companion — Girl and Boy variants side by side">
+    <img src="assets/og2_demo_day.jpg" alt="The LanternTail creature standing in the daytime demo scene, crystal tail catching the light">
     <div class="feature-list">
-      <div class="feature"><div class="dot"></div><div><b>16 animation clips</b><span>Idles, walks, hops, jump, sit, turns, and a Happy spin — plus in-place variants for code-driven controllers. Loop-perfect locomotion.</span></div></div>
-      <div class="feature"><div class="dot"></div><div><b>Tail lantern with a real light</b><span>Neon and warm lantern modes drive both the crystal's glow and an actual point light that follows her tail.</span></div></div>
-      <div class="feature"><div class="dot"></div><div><b>Two looks, one click</b><span>Swap Girl ↔ Boy live in the demo — body, tail crystal, and backpack together. Accessories toggle on and off.</span></div></div>
-      <div class="feature"><div class="dot"></div><div><b>Playable demos in both engines</b><span>Full third-person controller — keyboard and gamepad — with follow camera, in a handcrafted grove with day and night scenes.</span></div></div>
-      <div class="feature"><div class="dot"></div><div><b>Production-ready</b><span>3 LOD levels, 4K PBR textures, facial blend shapes, clean 83-bone skeleton. No third-party dependencies.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>31 animations</b><span>Idle, wink and squat idles; walk and hop cycles at two speeds with root-motion and in-place variants; jump, fall, land and double jump; backflip; two dodges; two attacks; hit react; sit; sleep; and a full set of gestures. Facial blinks are baked into the clips via blendshapes.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>One rig, sixteen looks</b><span>Eight creature colourways and eight zombie colourways, each a full PBR set baked onto the same UV layout. Cycle them live in the demo — body, gear and tail glow all change together, with no hitch in the animation.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>A zombie variant on the same skeleton</b><span>Rotted textures, matching props and its own demo scene — one rig and one animation set covers your companion and your enemy.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>Swappable gear</b><span>Backpack in six colourways, goggles in seven, plus shoulder straps — each a separate object with LOD1 and LOD2, toggled at runtime.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>A matching prop kit</b><span>Nine stylized garden props and nine rotted zombie props — torii gate, trees, crystal cluster, stone platforms, ruined arch, lamppost and more — all sharing the character's art direction.</span></div></div>
+      <div class="feature"><div class="dot"></div><div><b>Three playable demo scenes</b><span>Day, night and zombie. Every feature is on a key: animations, gear, tail glow modes, colourway cycling and an orbit camera.</span></div></div>
     </div>
   </div>
 </section>
@@ -184,18 +217,47 @@
   <div class="section-kicker">Gallery</div>
   <h2>From daylight groves to lantern-lit nights</h2>
   <div class="grid">
-    <figure><a href="assets/characters_night.jpg" target="_blank"><img src="assets/characters_night.jpg" alt="Girl and Boy variants at night with tail lanterns glowing"></a><figcaption>Girl &amp; Boy variants — tail lanterns in neon</figcaption></figure>
-    <figure><a href="assets/hero_night_lantern.jpg" target="_blank"><img src="assets/hero_night_lantern.jpg" alt="Night scene with the tail lantern lighting the path"></a><figcaption>The lantern really lights the night</figcaption></figure>
-    <figure><a href="assets/day_grove.jpg" target="_blank"><img src="assets/day_grove.jpg" alt="The daytime grove demo scene in Unreal Engine"></a><figcaption>Playable grove demo — Unreal Engine 5.7</figcaption></figure>
-    <figure><a href="assets/contents_trees.jpg" target="_blank"><img src="assets/contents_trees.jpg" alt="Stylized tree set included with the package"></a><figcaption>Included environment set — stylized trees &amp; torii</figcaption></figure>
-    <figure><a href="assets/contents_props.jpg" target="_blank"><img src="assets/contents_props.jpg" alt="Crystal props and grove pieces included with the package"></a><figcaption>Grove props — crystals, stump, island pieces</figcaption></figure>
+    <figure><a href="assets/og2_lineup_day.jpg" target="_blank"><img loading="lazy" src="assets/og2_lineup_day.jpg" alt="All eight creature colourways lined up in daylight"></a><figcaption>Eight creature colourways — one rig, one UV layout</figcaption></figure>
+    <figure><a href="assets/og2_lineup_night.jpg" target="_blank"><img loading="lazy" src="assets/og2_lineup_night.jpg" alt="The eight creature colourways at night with their crystal tails glowing"></a><figcaption>The same eight at night — tail lanterns lit</figcaption></figure>
+    <figure><a href="assets/og2_demo_night.jpg" target="_blank"><img loading="lazy" src="assets/og2_demo_night.jpg" alt="The night demo scene, tail lantern lighting the ground"></a><figcaption>Night demo scene — the tail really lights the ground</figcaption></figure>
+    <figure><a href="assets/zombie_lineup_day.jpg" target="_blank"><img loading="lazy" src="assets/zombie_lineup_day.jpg" alt="All eight zombie colourways lined up in daylight"></a><figcaption>Eight zombie colourways — same skeleton, same clips</figcaption></figure>
+    <figure><a href="assets/zombie_demo.jpg" target="_blank"><img loading="lazy" src="assets/zombie_demo.jpg" alt="The zombie demo scene with ruined arch and green glow"></a><figcaption>Zombie demo scene — ruins, lamppost and glow</figcaption></figure>
+    <figure><a href="assets/zombie_lineup_night.jpg" target="_blank"><img loading="lazy" src="assets/zombie_lineup_night.jpg" alt="The eight zombie colourways at night"></a><figcaption>Zombie colourways at night</figcaption></figure>
+    <figure><a href="assets/props_og.jpg" target="_blank"><img loading="lazy" src="assets/props_og.jpg" alt="The nine stylized garden props included in the pack"></a><figcaption>Nine garden props — torii, trees, crystals, platforms</figcaption></figure>
+    <figure><a href="assets/props_zombie.jpg" target="_blank"><img loading="lazy" src="assets/props_zombie.jpg" alt="The nine rotted zombie props included in the pack"></a><figcaption>Nine rotted props — arch, lamppost, dead tree, crate</figcaption></figure>
+    <figure><a href="assets/gear_sheet.jpg" target="_blank"><img loading="lazy" src="assets/gear_sheet.jpg" alt="Reference sheet showing every backpack and goggle colourway"></a><figcaption>Gear sheet — six backpacks, seven goggles, straps</figcaption></figure>
   </div>
   <p style="margin-top:14px; color:var(--ink-dim); font-size:0.85rem;">Click any image to view it full size.</p>
+</section>
+
+<section id="specs" style="padding-top: 8px;">
+  <div class="section-kicker">Specifications</div>
+  <h2>Built to drop straight into production</h2>
+
+  <div class="specs">
+    <dl class="spec"><dt>Triangles</dt><dd>17,237 body · 31,611 fully geared<small>Minimum 336 (straps LOD2)</small></dd></dl>
+    <dl class="spec"><dt>Level of detail</dt><dd>3 levels — character and gear<small>Fully geared: 31,611 / 14,643 / 7,126</small></dd></dl>
+    <dl class="spec"><dt>Rig</dt><dd>84 deform bones, generic<small>Root-motion locomotion plus in-place variants</small></dd></dl>
+    <dl class="spec"><dt>Textures</dt><dd>2048&times;2048 PBR sets<small>Base colour, normal, metallic/roughness, emissive</small></dd></dl>
+    <dl class="spec"><dt>Mobile</dt><dd>Automatic 1K ASTC on Android &amp; iOS<small>Per-platform overrides — desktop keeps full 2K</small></dd></dl>
+    <dl class="spec"><dt>Contents</dt><dd>16 character prefabs · 18 props<small>3 playable demo scenes · 31 animation clips</small></dd></dl>
+    <dl class="spec"><dt>Dependencies</dt><dd>None required<small>Optional: Post Processing Stack v2 for the demo bloom</small></dd></dl>
+    <dl class="spec"><dt>Render pipelines</dt><dd>Built-in and URP<small>URP verified in Unity 6 — see the note below</small></dd></dl>
+  </div>
+
+  <div class="note">
+    <b>Render pipelines.</b> Built for the Built-in Render Pipeline. For URP, after importing, select
+    the materials in <code>LanternTail_OG2/Materials</code> and run
+    <code>Edit &gt; Rendering &gt; Materials &gt; Convert Selected Built-in Materials to URP</code> —
+    all 148 materials convert cleanly, tested in Unity 6. The demo scenes' optional tail bloom uses
+    Post Processing Stack v2, which is Built-in only; everything else — character, skins, gear, all 31
+    animations, props and demo scenes — works in both pipelines.
+  </div>
 
   <div class="engines">
-    <div><b>Unity 6</b><span>Built-in RP · URP notes included</span></div>
-    <div><b>Unreal Engine 5.7</b><span>Blueprint-only · no plugins</span></div>
-    <div><b>One purchase, both engines</b><span>Complete projects, ready to play</span></div>
+    <div><b>Unity 6</b><span>Built-in &amp; URP · 2022.3 or newer</span></div>
+    <div><b>Unreal Engine 5.7</b><span>Four maps · no plugins</span></div>
+    <div><b>Complete projects</b><span>Playable demos, not just meshes</span></div>
   </div>
 </section>
 
